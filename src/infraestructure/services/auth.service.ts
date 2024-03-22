@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from '../axios'
 
 import { AuthForm } from '../../utils';
 import { environment } from '../../configuration/environment.development';

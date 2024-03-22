@@ -7,7 +7,6 @@ export const NavBar = () => {
   const toggleDropdown = (e: React.SyntheticEvent<HTMLDivElement>) => {
     const element$ = e.target as HTMLDivElement
     const dropdownContent$ = element$.parentElement?.querySelector(`.${css['dropdown__content']}`)
-    console.log(dropdownContent$) 
     element$.classList.toggle(css['dropdown__text--active'])
     dropdownContent$?.classList.toggle(css['dropdown__content--active'])
   }
