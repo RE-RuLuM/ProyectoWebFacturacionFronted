@@ -1,0 +1,26 @@
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  border-radius: 15px;
+  padding: 15px;
+  font-size: 1.5rem;
+  border-color: #535AFF;
+}
+
+.label {
+  color: #535AFF;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.btn {
+  color: #ffffff;
+  font-weight: bold;
+  background-color: #0008BF;
+  padding: 15px;
+  border-radius: 15px;
+  width: 100%;
+}
