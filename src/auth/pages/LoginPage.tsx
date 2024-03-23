@@ -50,7 +50,7 @@ export const LoginPage = () => {
           />
         </div>
         <br />
-        <button className='btn' type="submit">
+        <button className='btn bg-blue-600' type="submit">
           INGRESAR
         </button>
       </form>

@@ -24,3 +24,11 @@
   border-radius: 15px;
   width: 100%;
 }
+
+.btn--editar {
+  border-color: #0008BF;
+}
+
+.btn--eliminar {
+  border-color: #DC3545;
+}

@@ -6,6 +6,9 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { Toaster } from 'react-hot-toast'
 
 import './App.css'
+import './index.css'
+import 'animate.css';
+
 import { AppRouter } from './router/AppRouter'
 
 const queryClient = new QueryClient()

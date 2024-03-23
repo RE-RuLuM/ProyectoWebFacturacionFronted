@@ -1,5 +1,5 @@
-import { NavBar } from '../ui/components/NavBar'
 import { Outlet, Route, Routes } from 'react-router-dom'
+import { NavBar } from '../ui/components/NavBar'
 import { LoginPage } from '../auth'
 import { PrivateRoute } from './PrivateRoute'
 import { ClienteRoutes } from '../cliente'
@@ -9,9 +9,12 @@ import { FacturaRoutes } from '../factura'
 export const AppRouter = () => {
   function Dashboard() {
     return (<>
-      <NavBar />
-      <br />
-      <Outlet />
+      <main style={{ display: 'flex' }}>
+        <NavBar />
+        <div style={{ width: '80%', display: 'flex', justifyContent: 'center', alignItems: 'start', marginTop: 50 }}>
+          <Outlet />
+        </div>
+      </main>
     </>)
   }
 

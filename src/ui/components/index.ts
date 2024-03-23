@@ -1,1 +1,7 @@
 export * from './NavBar'
+export * from './TableBase'
+export * from './Pagination'
+export * from './ColumnBase'
+export * from './ButtonIconBase'
+export * from './ModalBase'
+export * from './MessageError'

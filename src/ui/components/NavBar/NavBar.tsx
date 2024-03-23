@@ -1,8 +1,11 @@
+import { useNavigate } from 'react-router-dom';
+
 import css from './navbar.module.css'
 import Icon from '../../../assets/Icon.svg'
 import Arrow from '../../../assets/Arrow.svg'
 
 export const NavBar = () => {
+  const navigate = useNavigate();
 
   const toggleDropdown = (e: React.SyntheticEvent<HTMLDivElement>) => {
     const element$ = e.target as HTMLDivElement
@@ -37,10 +40,20 @@ export const NavBar = () => {
             </div>
             <ul className={`${css.ul} ${css['dropdown__content']}`}>
               <div style={ {overflow: 'hidden' } }>
-                <li className={css['dropdown__link']} onClick={selectDropdownLink}>
+                <li className={css['dropdown__link']} onClick={(e) => {
+                    selectDropdownLink(e)
+                    navigate('/productos', {
+                      replace: true,
+                    })
+                  }}>
                   PRODUCTO
                 </li>
-                <li className={css['dropdown__link']} onClick={selectDropdownLink}>
+                <li className={css['dropdown__link']} onClick={(e) => {
+                    selectDropdownLink(e)
+                    navigate('/clientes', {
+                      replace: true,
+                    })
+                  }}>
                   CLIENTES
                 </li>
               </div>
@@ -53,7 +66,12 @@ export const NavBar = () => {
             </div>
             <ul className={`${css.ul} ${css['dropdown__content']}`}>
               <div style={ {overflow: 'hidden' } }>
-                <li className={css['dropdown__link']} onClick={selectDropdownLink}>
+                <li className={css['dropdown__link']} onClick={(e) => {
+                    selectDropdownLink(e)
+                    navigate('/facturas', {
+                      replace: true,
+                    })
+                  }}>
                   EMISIÓN FACTURA
                 </li>
               </div>
