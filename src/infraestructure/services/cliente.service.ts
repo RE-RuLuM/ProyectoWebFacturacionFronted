@@ -1,14 +1,19 @@
 import axios from '../axios'
 import { environment } from '../../configuration/environment.development';
 import { ClienteDTO, ResponseDTO } from '../dto';
-import { ClienteForm } from '../../utils';
+import { ClienteForm, ClienteQueryParams } from '../../utils';
 
 export const clienteService = {
-  listarClientes(): Promise<ResponseDTO<ClienteDTO[]>> {
+  listarClientes(query?: ClienteQueryParams): Promise<ResponseDTO<ClienteDTO[]>> {
     const token = localStorage.getItem('token') || ''
     return axios.get<ResponseDTO<ClienteDTO[]>>(`${environment.apiUrl}/clientes`, {
       headers: {
         'Authorization': `Bearer ${token}`
+      },
+      params: {
+        nombres: query?.nombres,
+        rucDni: query?.rucDNI,
+        correo: query?.correo
       }
     })
     .then(res => res.data)

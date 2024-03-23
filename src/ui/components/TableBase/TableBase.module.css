@@ -64,10 +64,12 @@
     background: #FFFFFF;
     & thead {
       display: table-header-group;
-      background: #7249ee;
+      background: #D2D7FF;
       & th {
         padding: 15px;
-        color: #FFFFFF;
+        color: #323cf3;
+        font-weight: 600;
+        letter-spacing: 2px;
         &:first-child {
           border-top-left-radius: 10px;
         }
@@ -105,8 +107,10 @@
         border-style: solid;
         border-color: #6238e029;
         border-bottom-width: 1px;
+        
         span {
-          display: inline;
+          width: 100%;
+          text-align: center;
         }
         &::before {
           content: none

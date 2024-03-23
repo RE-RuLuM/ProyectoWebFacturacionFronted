@@ -1,14 +1,18 @@
 import axios from '../axios'
 import { environment } from '../../configuration/environment.development';
 import { ProductoDTO, ResponseDTO } from '../dto';
-import { ProductoForm } from '../../utils';
+import { ProductoForm, ProductoQueryParams } from '../../utils';
 
 export const productoService = {
-  listarProductos(): Promise<ResponseDTO<ProductoDTO[]>> {
+  listarProductos(query?: ProductoQueryParams): Promise<ResponseDTO<ProductoDTO[]>> {
     const token = localStorage.getItem('token') || ''
     return axios.get<ResponseDTO<ProductoDTO[]>>(`${environment.apiUrl}/productos`, {
       headers: {
         'Authorization': `Bearer ${token}`
+      },
+      params: {
+        codigo: query?.codigo,
+        nombre: query?.nombre,
       }
     })
     .then(res => res.data)

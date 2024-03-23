@@ -4,3 +4,8 @@ export interface ProductoForm {
   precio: number;
   stock : number;
 }
+
+export interface ProductoQueryParams {
+  codigo?: string;
+  nombre?: string;
+}

@@ -13,7 +13,7 @@ export const ListadoClientes = () => {
   const [accion, setAccion] = useState('crear')
   const [isModalOpen, setIsModalOpen] = useState(false)
   const queryClient = useQueryClient()
-  const { data, isPending } = useQuery({ queryKey: ['clientes'], queryFn: clienteService.listarClientes })
+  const { data, isPending } = useQuery({ queryKey: ['clientes'], queryFn: () => clienteService.listarClientes() })
   const {data: dataCliente} = useQuery({ 
     queryKey: ['cliente', clienteId], 
     queryFn: () => clienteService.obtenerClientePorId(clienteId), 
@@ -70,6 +70,7 @@ export const ListadoClientes = () => {
   return (<>
       <ModalBase
         isActive={isModalOpen}
+        classes='w-1/3'
       >
         <>
         <form onSubmit={handleSubmit(crearCliente)}>

@@ -4,3 +4,9 @@ export interface ClienteForm {
   direccion: string;
   correo   : string;
 }
+
+export interface ClienteQueryParams {
+  nombres?: string;
+  rucDNI ?: string;
+  correo ?: string;
+}

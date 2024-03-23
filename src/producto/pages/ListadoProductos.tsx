@@ -13,7 +13,7 @@ export const ListadoProductos = () => {
   const [accion, setAccion] = useState('crear')
   const [isModalOpen, setIsModalOpen] = useState(false)
   const queryClient = useQueryClient()
-  const { data, isPending } = useQuery({ queryKey: ['productos'], queryFn: productoService.listarProductos })
+  const { data, isPending } = useQuery({ queryKey: ['productos'], queryFn: () => productoService.listarProductos() })
   const {data: dataProducto} = useQuery({ 
     queryKey: ['producto', productoId], 
     queryFn: () => productoService.obtenerProductoPorId(productoId), 
@@ -70,6 +70,7 @@ export const ListadoProductos = () => {
   return (<>
       <ModalBase
         isActive={isModalOpen}
+        classes='w-1/3'
       >
         <>
         <form onSubmit={handleSubmit(crearProducto)}>
