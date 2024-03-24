@@ -147,7 +147,7 @@ export const ListadoClientes = () => {
         </form>
         </>
       </ModalBase>
-      <div className='w-3/6'>
+      <div className='w-3/4'>
         <div className='container' style={{ display: 'flex', justifyContent: 'end' }}>
           <button className='btn' style={{ width: 150, padding: '10px 5px'}} onClick={() => {
             setIsModalOpen(true)
