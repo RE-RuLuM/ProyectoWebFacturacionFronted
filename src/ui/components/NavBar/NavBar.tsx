@@ -23,7 +23,7 @@ export const NavBar = () => {
 
   return (
     <>
-      <nav className={css['navbar']}>
+      <nav className={`${css['navbar']} relative`}>
         <div className={css['navbar__title']}>
           <img className={css['navbar__logo']} src={Icon} alt="" />
           <div className={css['navbar__text']}>
@@ -86,6 +86,17 @@ export const NavBar = () => {
             </ul>
           </li>
         </ul>
+        <button
+            className='w-4/5 left-5 bg-violet-600 text-white font-bold rounded-xl px-3 py-2 h-fit tracking-wider absolute bottom-5'
+            onClick={() => {
+              localStorage.clear()
+              navigate('/login', {
+                replace: true
+              })
+            }}
+            type="button">
+            SALIR
+          </button>
       </nav>
     </>
   )

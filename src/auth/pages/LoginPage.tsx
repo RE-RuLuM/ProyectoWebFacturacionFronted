@@ -27,7 +27,7 @@ export const LoginPage = () => {
   return (
     <div className={css.container}>
       <form onSubmit={handleSubmit(onLogin)}>
-        <h1>Control Ventas</h1>
+        <h1 className='text-6xl text-center text-blue-600 font-bold mb-4'>Control <br /> Ventas</h1>
         <div className='form-group'>
           <label className='label' htmlFor="floatingInput">Usuario</label>
           <input
