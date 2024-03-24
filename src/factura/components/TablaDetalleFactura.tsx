@@ -79,6 +79,17 @@ export const TablaDetalleFactura = ({ data, onEliminar }: TablaDetalleFacturaPro
               />
           </div>
           <div className='form-group w-1/4'>
+            <label className='label text-sm mb-2 tracking-wider' htmlFor="floatingInput">Porcentaje IGV</label>
+            <input
+              type="text"
+              className='p-2 text-sm border-2 border-violet-500 rounded-md'
+              id="floatingInput"
+              autoComplete="off"
+              readOnly
+              value={'18%'}
+            />
+          </div>
+          <div className='form-group w-1/4'>
               <label className='label text-sm mb-2 tracking-wider' htmlFor="floatingInput">IGV</label>
               <input
                 type="text"

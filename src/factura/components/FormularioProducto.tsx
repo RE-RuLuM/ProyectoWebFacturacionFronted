@@ -10,7 +10,7 @@ interface FormularioProductoProps {
 
 export const FormularioProducto = ({onAgregarProducto, onBuscarProducto, producto} : FormularioProductoProps) => {
   
-  const [cantidadIndicada, setCantidadIndicada] = useState(0)
+  const [cantidadIndicada, setCantidadIndicada] = useState(1)
 
   return (
     <>
@@ -124,7 +124,7 @@ export const FormularioProducto = ({onAgregarProducto, onBuscarProducto, product
                   }
 
                   onAgregarProducto(cantidadIndicada)
-                  setCantidadIndicada(0)
+                  setCantidadIndicada(1)
                 }}>
                 AGREGAR PRODUCTO
               </button>

@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { ModalBusquedaClientes, FormularioProducto, ModalBusquedaProductos, TablaDetalleFactura } from '../components'
-import { ClienteDTO, ProductoDTO, facturaService } from '../../infraestructure'
-import { DetalleFacturaForm } from '../../utils'
+import { ClienteDTO, ProductoDTO, clienteService, facturaService } from '../../infraestructure'
+import { ClienteForm, DetalleFacturaForm } from '../../utils'
 import Swal from 'sweetalert2'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { MessageError, ModalBase } from '../../ui/components'
+import { useForm } from 'react-hook-form'
 
 export const EmisionFactura = () => {
 
@@ -26,8 +28,106 @@ export const EmisionFactura = () => {
 
   const [detalles, setDetalles] = useState<DetalleFacturaForm[]>([])
 
+  const [isModalCrearClienteOpen, setIsModalCrearClienteOpen] = useState(false)
+
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<ClienteForm>()
+
+  const queryClient = useQueryClient()
+
+  const mutationCreate = useMutation({
+    mutationFn: clienteService.crearCliente,
+    onSuccess: () => {
+      setIsModalCrearClienteOpen(false)
+      queryClient.invalidateQueries({ queryKey: ['clientes'] })
+    }
+  })
+
+  const crearCliente = (body: ClienteForm) => {
+    mutationCreate.mutate(body)
+    reset()
+  }
+
   return (
     <>
+      <ModalBase
+        isActive={isModalCrearClienteOpen}
+        classes='w-1/3'
+      >
+        <>
+        <form onSubmit={handleSubmit(crearCliente)}>
+          <div className='form-group'>
+            <label className='label text-sm' htmlFor="floatingInput">RUC / DNI</label>
+            <input
+              type="text"
+              className='p-2 text-sm border-2 border-violet-500 rounded-sm'
+              id="floatingInput"
+              placeholder="RUC / DNI"
+              autoComplete="off"
+              {...register('rucDni', { required: true, minLength: 8, maxLength: 15 })}
+            />
+            {
+              errors.rucDni
+              &&
+              <MessageError text='El campo tiene un valor inválido' />
+            }
+          </div>
+          <div className='form-group'>
+            <label className='label text-sm' htmlFor="floatingInput">Nombres</label>
+            <input
+              type="text"
+              className='p-2 text-sm rounded-sm border-2 border-violet-500'
+              id="floatingInput"
+              placeholder="Nombres"
+              autoComplete="off"
+              {...register('nombres', { required: true })}
+            />
+            {
+              errors.nombres
+              &&
+              <MessageError text='El campo es obligatorio' />
+            }
+          </div>
+          <div className='form-group'>
+            <label className='label text-sm' htmlFor="floatingInput">Dirección</label>
+            <input
+              type="text"
+              className='p-2 text-sm rounded-sm border-2 border-violet-500'
+              id="floatingInput"
+              placeholder="Dirección"
+              autoComplete="off"
+              {...register('direccion', { required: true })}
+            />
+            {
+              errors.direccion
+              &&
+              <MessageError text='El campo es obligatorio' />
+            }
+          </div>
+          <div className='form-group'>
+            <label className='label text-sm' htmlFor="floatingInput">Correo</label>
+            <input
+              type="text"
+              className='p-2 text-sm rounded-sm border-2 border-violet-500'
+              id="floatingInput"
+              placeholder="Correo"
+              autoComplete="off"
+              {...register('correo', { required: true, pattern: /\S+@\S+\.\S+/ })}
+            />
+            {
+              errors.correo
+              &&
+              <MessageError text='No es un correo válido' />
+            }
+          </div>
+          <div className='footer flex gap-4 justify-end mt-4'>
+            <button className='btn bg-blue-600 w-1/4' style={{ padding: '10px 2px'}} type='submit'>ACEPTAR</button>
+            <button className='btn w-1/4 bg-red-500' style={{ padding: '10px 2px'}} onClick={() => {
+                setIsModalCrearClienteOpen(false)
+            }} type='button'>CERRAR</button>
+          </div>
+        </form>
+        </>
+      </ModalBase>
       <ModalBusquedaClientes
         isActive={isModalClienteOpen}
         obtenerCliente={(cliente) => {
@@ -67,10 +167,16 @@ export const EmisionFactura = () => {
               </div>
               <div className='w-1/2'>
                 <button 
-                  className='bg-blue-600 text-white font-bold rounded-xl px-3 py-2 h-fit tracking-wider' 
+                  className='bg-blue-600 text-white font-bold rounded-xl px-3 py-2 h-fit tracking-wider mr-4' 
                   onClick={() => { setIsModalClienteOpen(true) }}
                   type="button">
                   BUSCAR
+                </button>
+                <button 
+                  className='bg-blue-600 text-white font-bold rounded-xl px-3 py-2 h-fit tracking-wider' 
+                  onClick={() => { setIsModalCrearClienteOpen(true) }}
+                  type="button">
+                  CREAR CLIENTE
                 </button>
               </div>
             </div>
