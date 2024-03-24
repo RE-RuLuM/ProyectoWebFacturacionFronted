@@ -13,5 +13,32 @@ export const facturaService = {
       }
     })
     .then(res => res.data)
+  },
+  listarFacturas(): Promise<ResponseDTO<FacturaDTO[]>> {
+    const token = localStorage.getItem('token') || ''
+    return axios.get<ResponseDTO<FacturaDTO[]>>(`${environment.apiUrl}/facturas`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    .then(res => res.data)
+  },
+  obtenerFacturaPorId(id: number): Promise<ResponseDTO<FacturaDTO>> {
+    const token = localStorage.getItem('token') || ''
+    return axios.get<ResponseDTO<FacturaDTO>>(`${environment.apiUrl}/facturas/${id}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    .then(res => res.data)
+  },
+  eliminarFactura({ id }: { id: number}): Promise<number> {
+    const token = localStorage.getItem('token') || ''
+    return axios.delete<number>(`${environment.apiUrl}/facturas/${id}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    .then(res => res.data)
   }
 }

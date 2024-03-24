@@ -1,11 +1,12 @@
 import { Routes, Route } from 'react-router-dom'
-import { EmisionFactura } from '../pages'
+import { EmisionFactura, ListadoFacturas } from '../pages'
 
 export const FacturaRoutes = () => {
   return (
     <>
       <Routes>
-        <Route path='/' element={<EmisionFactura />} />
+        <Route path='/emision' element={<EmisionFactura />} />
+        <Route path='/' element={<ListadoFacturas />} />
       </Routes>
     </>
   )

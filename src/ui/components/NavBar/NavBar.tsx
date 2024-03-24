@@ -68,11 +68,19 @@ export const NavBar = () => {
               <div style={ {overflow: 'hidden' } }>
                 <li className={css['dropdown__link']} onClick={(e) => {
                     selectDropdownLink(e)
-                    navigate('/facturas', {
+                    navigate('/facturas/emision', {
                       replace: true,
                     })
                   }}>
                   EMISIÓN FACTURA
+                </li>
+                <li className={css['dropdown__link']} onClick={(e) => {
+                    selectDropdownLink(e)
+                    navigate('/facturas', {
+                      replace: true,
+                    })
+                  }}>
+                  FACTURAS EMITIDAS
                 </li>
               </div>
             </ul>

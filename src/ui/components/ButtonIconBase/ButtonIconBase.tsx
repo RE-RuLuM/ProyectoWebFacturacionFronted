@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import EditIcon from '../../../assets/edit.svg?react';
+import EyeIcon from '../../../assets/eye.svg?react';
 import TrashIcon from '../../../assets/trash.svg?react';
 import styles from './ButtonIconBase.module.css'
 
@@ -18,6 +19,8 @@ export const ButtonIconBase: React.FC<ButtonIconProps> = (props) => {
   const Icon = () =>
     accion === 'editar'
       ? <EditIcon className={`${styles['edit-icon']}`} />
+      : accion === 'ver'
+      ? <EyeIcon className={`${styles['eye-icon']}`} />
       : <TrashIcon className={`${styles['trash-icon']}`} />
 
   return <>
